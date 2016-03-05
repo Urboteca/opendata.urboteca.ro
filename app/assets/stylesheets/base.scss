@@ -26,7 +26,6 @@ body {
   }
 
   a:hover {
-    font-weight: bold;
     text-decoration: none;
   }
 
@@ -43,12 +42,31 @@ body {
     color: $menu-font-color;
   }
 
-  .navbar-brand img {
+  img {
     height: 50px;
+  }
+
+  button.navbar-toggle {
+    margin-top: 3%;
+    border-color: $menu-font-color;
+
+    span {
+      background-color: $menu-font-color;
+    }
+  }
+
+  button:hover, button:active, button:focus {
+    background-color: $menu-primary-color;
   }
 
   .navbar-collapse {
     padding-top: 20px;
+  }
+
+  .navbar-collapse.collapse.in {
+    background-color: $menu-primary-color;
+    padding-top: 10px;
+
   }
 }
 
