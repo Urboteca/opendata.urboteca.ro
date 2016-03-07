@@ -1,4 +1,38 @@
-<section>
-  <h1>Base#index</h1>
-  <p>Find me in app/views/base/index.html.erb</p>
+<% content_for :head do %>
+  <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+  <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+<% end %>
+
+<section id="content" class="container-fluid">
+  <div class="row">
+    <div class="col-md-8" onload=createCartoDbVis()>
+      <div id="cartodb-map"></div>
+      <script>
+          var bucharest = {
+            center: [44.4677, 26.100],
+            zoom: 12
+          }
+
+          window.onload = function() {
+            cartodb.createVis(
+            'cartodb-map',
+            'https://urboteca.cartodb.com/api/v2/viz/aaf8c108-d800-11e5-b49c-0e8c56e2ffdb/viz.json',
+            bucharest
+          )}
+      </script>
+    </div>
+    <div class="col-md-4">
+      <div class="table-responsive">
+        <table class="table">
+          <tr>
+            <td>
+              <div class="page-header">
+                <h3><%= table.header %></h3>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
 </section>

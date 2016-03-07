@@ -2,10 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 $body-primary-color: white;
+$menu-height: 80px;
 $menu-primary-color: #ec008c;
 $menu-font-color: white;
 $font-stack:  Helvetica;
 $font-primary-size: 16px;
+$footer-primary-color:  #ec008c;
 
 body {
   background-color: $body-primary-color;
@@ -35,7 +37,7 @@ body {
 }
 
 #menu {
-  height: 80px;
+  height: $menu-height;
   background-color: $menu-primary-color;
 
   a {
@@ -70,9 +72,22 @@ body {
   }
 }
 
+#content {
+  margin-top: $menu-height;
+}
+
+#cartodb-map {
+  width: 100%;
+  height: 630px;
+}
+
 footer {
+  width: 100%;
   height: 65px;
-  background-color: $menu-primary-color;
+  position: absolute;
+  bottom: 0;
+
+  background-color: $footer-primary-color;
   color: $menu-font-color;
 
   ul {
