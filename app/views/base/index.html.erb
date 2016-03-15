@@ -16,7 +16,7 @@
           window.onload = function() {
             cartodb.createVis(
             'cartodb-map',
-            'https://urboteca.cartodb.com/api/v2/viz/aaf8c108-d800-11e5-b49c-0e8c56e2ffdb/viz.json',
+            '<%= @map.cartodb_url %>',
             bucharest
           )}
       </script>
@@ -27,7 +27,7 @@
           <tr>
             <td>
               <div class="page-header">
-                <h3><%= table.header %></h3>
+                <h3><%= @map.name %></h3>
               </div>
             </td>
           </tr>

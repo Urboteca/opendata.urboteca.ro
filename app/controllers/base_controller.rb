@@ -1,6 +1,5 @@
 class BaseController < ApplicationController
   def index
-    @table = MapTable.new
-    @table.header = "Certificate de urbanism"
+    @map = Map.find_by(is_main: true)
   end
 end
