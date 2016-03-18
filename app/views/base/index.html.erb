@@ -8,17 +8,15 @@
     <div class="col-md-8" onload=createCartoDbVis()>
       <div id="cartodb-map"></div>
       <script>
-          var bucharest = {
-            center: [44.4677, 26.100],
-            zoom: 12
-          }
-
           window.onload = function() {
-            cartodb.createVis(
-            'cartodb-map',
-            '<%= @map.cartodb_url %>',
-            bucharest
-          )}
+            var map = L.map('cartodb-map').setView([44.4677, 26.100], 10);
+
+            L.tileLayer('http://a.tile.stamen.com/toner/{z}/{x}/{y}.png', {
+                attribution: 'stamen http://maps.stamen.com/'
+              }).addTo(map);
+
+            cartodb.createLayer(map, '<%= @map.cartodb_url %>').addTo(map);
+          }
       </script>
     </div>
     <div class="col-md-4">
