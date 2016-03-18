@@ -5,17 +5,23 @@
 
 <section id="content" class="container-fluid">
   <div class="row">
-    <div class="col-md-8" onload=createCartoDbVis()>
-      <div id="cartodb-map"></div>
+    <div class="col-md-8">
+      <div id="map"></div>
       <script>
           window.onload = function() {
-            var map = L.map('cartodb-map').setView([44.4677, 26.100], 10);
+            cartodb.createVis('map', '<%= @map.cartodb_url %>', {legends: true})
+              .done(function(vis, layers) {
+                // layer 0 is the base layer, layer 1 is cartodb layer
+                // when setInteraction is disabled featureOver is triggered
+                layers[1].setInteraction(true);
 
-            L.tileLayer('http://a.tile.stamen.com/toner/{z}/{x}/{y}.png', {
-                attribution: 'stamen http://maps.stamen.com/'
-              }).addTo(map);
+                // you can get the native map to work with it
+                var cartoMap = vis.getNativeMap();
 
-            cartodb.createLayer(map, '<%= @map.cartodb_url %>').addTo(map);
+                // now, perform any operations you need, e.g. assuming map is a L.Map object:
+                cartoMap.setZoom(11);
+                //cartoMap.panTo([44.4677, 26.5400]);
+            });
           }
       </script>
     </div>
