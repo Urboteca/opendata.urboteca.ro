@@ -35,6 +35,18 @@
               </div>
             </td>
           </tr>
+          <% if @map.metadata %>
+          <tr>
+            <td>
+              <% for datapoint in @map.metadata %>
+              <div class="page-header">
+                <h3><%= datapoint.keys[0] %></h3>
+                <p><%= datapoint.values[0] %></p>
+              </div>
+              <% end %>
+            </td>
+          </tr>
+          <% end %>
         </table>
       </div>
     </div>

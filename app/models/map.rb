@@ -13,4 +13,6 @@ class Map < ActiveRecord::Base
   validates :description, presence: true
   validates :cartodb_url, presence: true, format: { with: VALID_URL_REGEX }
   validates :cartodb_sql_url, presence: true, format: { with: VALID_URL_REGEX }
+
+  attr_accessor :metadata
 end
