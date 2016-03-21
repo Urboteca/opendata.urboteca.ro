@@ -11,14 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313103729) do
+ActiveRecord::Schema.define(version: 20160320095056) do
 
   create_table "maps", force: :cascade do |t|
     t.string   "name"
+    t.text     "description"
     t.text     "cartodb_url"
+    t.text     "cartodb_sql_url"
     t.boolean  "is_main"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "filter_one"
+    t.string   "filter_two"
+    t.string   "filter_three"
   end
 
 end
