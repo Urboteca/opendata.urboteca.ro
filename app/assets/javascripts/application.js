@@ -15,3 +15,24 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+var ready;
+ready = function() {
+
+  cartodb.createVis('map', gon.map.cartodb_url, {legends: true})
+    .done(function(vis, layers) {
+      // layer 0 is the base layer, layer 1 is cartodb layer
+      // when setInteraction is disabled featureOver is triggered
+      layers[1].setInteraction(true);
+
+      // you can get the native map to work with it
+      var cartoMap = vis.getNativeMap();
+
+      // now, perform any operations you need, e.g. assuming map is a L.Map object:
+      cartoMap.setZoom(11);
+      //cartoMap.panTo([44.4677, 26.5400]);
+  });
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

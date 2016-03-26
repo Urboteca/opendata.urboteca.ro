@@ -1,3 +1,4 @@
+<%= Gon::Base.render_data %>
 <% content_for :head do %>
   <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
   <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
@@ -7,23 +8,6 @@
   <div class="row">
     <div class="col-md-8">
       <div id="map"></div>
-      <script>
-          window.onload = function() {
-            cartodb.createVis('map', '<%= @map.cartodb_url %>', {legends: true})
-              .done(function(vis, layers) {
-                // layer 0 is the base layer, layer 1 is cartodb layer
-                // when setInteraction is disabled featureOver is triggered
-                layers[1].setInteraction(true);
-
-                // you can get the native map to work with it
-                var cartoMap = vis.getNativeMap();
-
-                // now, perform any operations you need, e.g. assuming map is a L.Map object:
-                cartoMap.setZoom(11);
-                //cartoMap.panTo([44.4677, 26.5400]);
-            });
-          }
-      </script>
     </div>
     <div class="col-md-4">
       <div class="table-responsive">
@@ -39,9 +23,8 @@
           <tr>
             <td>
               <% for datapoint in @map.metadata %>
-              <div class="page-header">
-                <h3><%= datapoint.keys[0] %></h3>
-                <p><%= datapoint.values[0] %></p>
+              <tr><h3><%= datapoint.keys[0] %></h3></tr>
+              <tr><p><%= datapoint.values[0] %></p></tr>
               </div>
               <% end %>
             </td>
