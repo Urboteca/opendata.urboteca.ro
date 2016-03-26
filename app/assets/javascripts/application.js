@@ -16,8 +16,8 @@
 //= require turbolinks
 //= require_tree .
 
-var ready;
-ready = function() {
+var createCartoDBVis;
+createCartoDBVis = function() {
 
   cartodb.createVis('map', gon.map.cartodb_url, {legends: true})
     .done(function(vis, layers) {
@@ -34,5 +34,13 @@ ready = function() {
   });
 };
 
-$(document).ready(ready);
-$(document).on('page:load', ready);
+var createCartoDBTable;
+createCartoDBTable = function() {
+
+};
+
+$(document).ready(createCartoDBVis);
+$(document).on('page:load', createCartoDBVis);
+
+$(document).ready(createCartoDBTable);
+$(document).on('page:load', createCartoDBTable);

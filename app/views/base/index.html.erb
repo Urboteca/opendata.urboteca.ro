@@ -11,20 +11,16 @@
     </div>
     <div class="col-md-4">
       <div class="table-responsive">
+        <div class="page-header">
+          <h3><%= @map.name %></h3>
+        </div>
         <table class="table">
-          <tr>
-            <td>
-              <div class="page-header">
-                <h3><%= @map.name %></h3>
-              </div>
-            </td>
-          </tr>
           <% if @map.metadata %>
           <tr>
             <td>
               <% for datapoint in @map.metadata %>
-              <tr><h3><%= datapoint.keys[0] %></h3></tr>
-              <tr><p><%= datapoint.values[0] %></p></tr>
+              <tr><h3><%= datapoint[0] %></h3></tr>
+              <tr><p><%= datapoint[1].values[0] %></p></tr>
               </div>
               <% end %>
             </td>

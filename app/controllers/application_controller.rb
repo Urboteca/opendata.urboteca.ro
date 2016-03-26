@@ -7,7 +7,17 @@ class ApplicationController < ActionController::Base
 
   def get_map_metadata(map_id)
     url = URI(Map.find(map_id).cartodb_sql_url)
-    query_string = Map::COUNT_DATA_PER_SECTOR % 'Sector 2'
+
+    data = Hash.new
+    Map::SECTORS.each do |sector|
+      query_string = Map::COUNT_DATA_PER_SECTOR % sector
+      data[sector] = make_request(url, query_string)[0]
+    end
+
+    return data
+  end
+
+  def make_request(url, query_string)
     query = URI.encode_www_form({q: query_string})
     url = URI("#{url}#{query}")
 
@@ -15,6 +25,6 @@ class ApplicationController < ActionController::Base
       request = Net::HTTP::Get.new url
       response = http.request(request)
     end
-    return response.body
+    return JSON.parse(response.body)['rows']
   end
 end
