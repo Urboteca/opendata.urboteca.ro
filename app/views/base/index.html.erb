@@ -10,24 +10,53 @@
       <div id="map"></div>
     </div>
     <div class="col-md-4">
-      <div class="table-responsive">
-        <div class="page-header">
-          <h3><%= @map.name %></h3>
-        </div>
-        <table class="table">
-          <% if @map.metadata %>
-          <tr>
-            <td>
-              <% for datapoint in @map.metadata %>
-              <tr><h3><%= datapoint[0] %></h3></tr>
-              <tr><p><%= datapoint[1].values[0] %></p></tr>
-              </div>
-              <% end %>
-            </td>
-          </tr>
-          <% end %>
-        </table>
+      <div class="page-header">
+        <h3><%= @map.name %></h3>
+        <p><%= @map.description %></p>
       </div>
+      <table class="table" id="statistic-metada">
+      <% if @map.metadata %>
+      <tr>
+      <% for datapoint in @map.metadata %>
+          <td>
+            <h5><%= datapoint[0] %></h5>
+            <p><%= datapoint[1].values[0] %></p>
+          </td>
+      <% end %>
+      </tr>
+      <% end %>
+    </table>
+    <table  class="table" id="filter-metadata">
+      <tr>
+        <td>
+        <h5> Filtreaza dupa sector </h5>
+        <select class="selectpicker">
+          <% Map::SECTORS.each do |sector| %>
+              <option> <%= sector %> </option>
+          <% end %>
+        </select>
+        </td>
+
+        <td>
+        <h5> Filtreaza dupa oras </h5>
+        <select class="selectpicker">
+          <% Map::CITIES.each do |city| %>
+              <option> <%= city %> </option>
+          <% end %>
+        </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <h5> Filtreaza dupa tip </h5>
+        <select class="selectpicker">
+          <% Map::TYPES.each do |type| %>
+              <option> <%= type %> </option>
+          <% end %>
+        </select>
+        </td>
+      </tr>
+      </table>
     </div>
   </div>
 </section>

@@ -4,6 +4,7 @@ class Map < ActiveRecord::Base
 
   SECTORS = ['Sector 1', 'Sector 2', 'Sector 3', 'Sector 4', 'Sector 5', 'Sector 6']
   CITIES = ['Bucharest']
+  TYPES = ['ALIPIRE TERENURI', 'ALTELE', 'BALCON', 'DESFINTARE', 'DEZMEMBRARE', 'IMOBIL MIXT', 'IMOBIL REZIDENTIAL']
   COLUMNS_NAME_SQL = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='cu_2015'"
   COUNT_DATA = "SELECT count(*) FROM 'cu_2015'"
   DATA_PER_SECTOR = "SELECT * FROM cu_2015 where lower(sector)=lower('%s')"
