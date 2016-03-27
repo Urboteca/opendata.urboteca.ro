@@ -34,13 +34,52 @@ createCartoDBVis = function() {
   });
 };
 
-var createCartoDBTable;
-createCartoDBTable = function() {
+var createCartoDBMap;
+createCartoDBMap = function() {
+  var layer = new L.StamenTileLayer("toner");
+
+  var map = new L.Map('map', {
+    center: [44.4377, 26.1300],
+    zoom: 11
+  });
+
+  map.addLayer(layer);
+
+  cartodb.createLayer(map, gon.map.cartodb_url)
+    .addTo(map)
+    .done(function(layer) {
+      layer.setInteraction(true);
+
+      var subLayerOptions = {
+        sql: "SELECT * FROM cu_2015",
+        layer_name: "certificate urbanism 2015",
+      };
+      layer.getSubLayer(0).set(subLayerOptions);
+  });
+};
+
+var filterCartoDBVis;
+filterCartoDBVis = function() {
+  var map = document.getElementById('map')
+  // create a layer with 1 sublayer
+  cartodb.createLayer(map, {
+    user_name: 'urboteca',
+    type: 'cartodb',
+    sublayers: [{
+      sql: gon.map.sql_query,
+      cartocss: '#table_name {marker-fill: #F0F0F0;}'
+    }]
+  })
+  .addTo(map) // add the layer to our map which already contains 1 sublayer
+  .done(function(layer) {
+    // create and add a new sublayer
+    layer.createSubLayer({
+      sql: gon.map.filter_sql_query,
+      cartocss: '#table_name {marker-fill: #F0F0F0;}'
+    });
+  });
 
 };
 
-$(document).ready(createCartoDBVis);
-$(document).on('page:load', createCartoDBVis);
-
-$(document).ready(createCartoDBTable);
-$(document).on('page:load', createCartoDBTable);
+$(document).ready(createCartoDBMap);
+$(document).on('page:load', createCartoDBMap);
